@@ -2,7 +2,7 @@ import pandas as pd
 import openai
 
 # OpenAI API key
-openai.api_key = API_KEY
+openai.api_key = "API_KEY"
 
 # read data from Excel
 data = pd.read_excel("BigBotData.xlsx")
