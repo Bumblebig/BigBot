@@ -15,7 +15,7 @@ To get Gemini API key:
 - Head on to [Aistudio](https://aistudio.google.com/app/apikey)
 - Click "create API"
 - Now input your api key into the configuration line
-`genai.configure(api_key="YOUR_GENERATED_API_KEY")
+`genai.configure(api_key="YOUR_GENERATED_API_KEY")`
 
 ### Chatbot
 The chatbot contains some predetermined data. However, if prompt is not a part of the data, it initialises the AI
