@@ -2,7 +2,7 @@ import pandas as pd
 import openai
 
 # OpenAI API key
-openai.api_key = "API_KEY"
+openai.api_key = "key"
 
 # read data from Excel
 data = pd.read_excel("BigBotData.xlsx")
@@ -14,16 +14,14 @@ for idx, row in data.iterrows():
     bot_response = row['bot_response']
     responses[user_input] = bot_response
 
-print(responses)
 # generate bot response using GPT-3
 
 def generate_bot_response(user_input):
-    response = openai.Completion.create(
-        engine="davinci",
-        prompt=user_input,
-        max_tokens=50
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": user_input}]
     )
-    return response.choices[0].text.strip()
+    return response.choices[0].message.content.strip()
 
 # Initialize the chat bot
 print("BigBot: Hi! I'm your chatbot")
