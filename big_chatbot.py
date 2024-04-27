@@ -2,7 +2,6 @@ import pandas as pd
 import textwrap
 import re
 import google.generativeai as genai
-from IPython.display import Markdown
 
 
 # read data from Excel
@@ -16,18 +15,14 @@ for idx, row in data.iterrows():
     responses[user_input] = bot_response
 
 # Initializing Gemini
-genai.configure(api_key="API_KEY")
+genai.configure(api_key="KEY")
 model = genai.GenerativeModel('gemini-pro')
 
-# Format bot response
-def to_markdown(text):
-  text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
 # generate bot response using Gemini
 def generate_bot_response(user_input):
     response = model.generate_content(user_input)
-    return to_markdown(response.text)
+    return response.text
 
 # Remove unwanted charcters
 def format_text(text):
@@ -48,4 +43,4 @@ while True:
         print("BigBot:", responses[user_input])
     else:
         bot_response = generate_bot_response(user_input)
-        print(f"BigBot:{format_text(bot_response.data)}")
+        print(f"BigBot: {format_text(bot_response)}")
